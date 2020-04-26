@@ -1,0 +1,25 @@
+version: "3.7"
+networks:
+  demo-net:
+services:
+  rent_app:
+    image: ushakovvk/projects:rent_app
+    networks:
+    - demo-net
+
+  taxi:
+    image: ushakovvk/projects:taxi
+    networks:
+    - demo-net
+
+  sentiment_analysis:
+    image: ushakovvk/projects:sentiment_analysis
+    networks:
+    - demo-net
+
+  webproxy:
+    image: ushakovvk/projects:webproxy
+    ports:
+    - "80:80/tcp"
+    networks:
+    - demo-net
