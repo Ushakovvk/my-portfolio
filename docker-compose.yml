@@ -1,0 +1,23 @@
+version: "3.8"
+networks:
+  demo-net:
+services:
+  rent_app:
+    build:
+      context: ./optimal-rent
+      dockerfile: Dockerfile
+    image: rent_app
+    networks:
+    - demo-net
+  webproxy:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: webproxy
+    ports:
+    - "80:80/tcp"
+    networks:
+    - demo-net
+    depends_on:
+      - rent_app
+
